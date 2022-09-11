@@ -7,6 +7,7 @@ import com.bridgelabz.bookstoreapplication.user.dto.UserDTO;
 import com.bridgelabz.bookstoreapplication.user.model.User;
 import com.bridgelabz.bookstoreapplication.user.repository.UserRepository;
 import com.bridgelabz.bookstoreapplication.util.TokenUtil;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,8 @@ public class UserService implements IUserService{
     @Autowired
     private TokenUtil tokenUtil;
 
-
-
+    @Autowired
+    private ModelMapper modelMapper;
     /**
      * This method creates user registration with new user data
      * @param userDTO
@@ -73,13 +74,13 @@ public class UserService implements IUserService{
      */
     @Override
     public ResponseDTO updateUserData(int userId, UserDTO userDTO) {
-        User userData = this.getUserDataById(userId);
+        User user = this.getUserDataById(userId);
 
         Optional<User> isUserPresent = userRepository.findById(userId);
         if (isUserPresent.isPresent()) {
-            userData.updateUser(userDTO);
-            userRepository.save(userData);
-            return new ResponseDTO("User Details Successfully Updated", userData);
+            user.updateUser(userDTO);
+            userRepository.save(user);
+            return new ResponseDTO("User Details Successfully Updated", user);
         }
         else {
             throw new GlobalException("User is not present");

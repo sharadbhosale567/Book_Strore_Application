@@ -4,7 +4,7 @@ import com.bridgelabz.bookstoreapplication.user.dto.LoginDTO;
 import com.bridgelabz.bookstoreapplication.user.dto.ResponseDTO;
 import com.bridgelabz.bookstoreapplication.user.dto.UserDTO;
 import com.bridgelabz.bookstoreapplication.user.model.User;
-import com.bridgelabz.bookstoreapplication.user.service.EmailService;
+import com.bridgelabz.bookstoreapplication.util.EmailService;
 import com.bridgelabz.bookstoreapplication.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
